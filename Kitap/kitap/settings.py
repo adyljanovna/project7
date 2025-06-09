@@ -13,8 +13,6 @@ import os
 
 from pathlib import Path
 
-from django.utils.translation.trans_null import gettext
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -116,16 +114,6 @@ LANGUAGE_CODE = 'ru'
 
 TIME_ZONE = 'UTC'
 
-USE_I18N = True
-
-USE_TZ = True
-
-gettext = lambda s: s
-LANGUAGE =(
-    ('ru', gettext('Russia')),
-    ('ky', gettext('Kyrgyz')),
-)
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
@@ -136,8 +124,20 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
 
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+gettext = lambda s: s
+USE_I18N = True
+USE_L10N = True
+USE_TZ = True
+LANGUAGES = [
+    ('kg', gettext('KG')),
+    ('ru', gettext('RU')),
+
+]
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale'),
+)
